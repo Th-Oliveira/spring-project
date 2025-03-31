@@ -9,6 +9,7 @@ public class ProdutoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(hidden = true)
+    @Column(name = "id")
     private Long id;
 
     @Column(name="nome")
@@ -17,7 +18,7 @@ public class ProdutoEntity {
     @Column(name="preco")
     private Double preco;
 
-    public ProdutoEntity() {}
+    public ProdutoEntity(){}
 
     public ProdutoEntity(String nome, Double preco) {
         this.nome = nome;

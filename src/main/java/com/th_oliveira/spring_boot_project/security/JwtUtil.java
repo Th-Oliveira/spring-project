@@ -12,7 +12,6 @@ public class JwtUtil {
 
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    //1 dia = 86400000 milisegundos
     private static final long EXPIRATION_TIME = 86400000;
 
     public static String generateToken(String username) {

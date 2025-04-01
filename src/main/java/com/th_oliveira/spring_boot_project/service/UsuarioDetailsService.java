@@ -1,6 +1,6 @@
 package com.th_oliveira.spring_boot_project.service;
 
-import com.th_oliveira.spring_boot_project.entity.UsuarioEntity;
+import com.th_oliveira.spring_boot_project.entity.usuario.UsuarioEntity;
 import com.th_oliveira.spring_boot_project.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

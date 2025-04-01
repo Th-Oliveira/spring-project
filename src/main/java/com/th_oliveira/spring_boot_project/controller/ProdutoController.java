@@ -1,6 +1,7 @@
 package com.th_oliveira.spring_boot_project.controller;
 
-import com.th_oliveira.spring_boot_project.entity.ProdutoEntity;
+import com.th_oliveira.spring_boot_project.entity.produto.ProdutoEntity;
+import com.th_oliveira.spring_boot_project.entity.produto.dto.request.CreateProdutoDTO;
 import com.th_oliveira.spring_boot_project.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ProdutoEntity criarProduto(@RequestBody ProdutoEntity produtoEntity){
-        return produtoService.salvarProduto(produtoEntity);
+    public ProdutoEntity criarProduto(@RequestBody CreateProdutoDTO dto){
+        return produtoService.salvarProduto(dto);
     }
 
     @DeleteMapping("/{id}")

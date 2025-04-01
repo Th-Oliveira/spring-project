@@ -1,6 +1,8 @@
 package com.th_oliveira.spring_boot_project.controller;
 
-import com.th_oliveira.spring_boot_project.entity.UsuarioEntity;
+import com.th_oliveira.spring_boot_project.entity.usuario.UsuarioEntity;
+import com.th_oliveira.spring_boot_project.entity.usuario.dto.request.LoginUserDTO;
+import com.th_oliveira.spring_boot_project.entity.usuario.dto.request.RegisterUserDTO;
 import com.th_oliveira.spring_boot_project.security.JwtUtil;
 import com.th_oliveira.spring_boot_project.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +28,15 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Map<String, String> request){
-        UsuarioEntity usuarioEntity = usuarioService.registrarUsuario(request.get("username"), request.get("password"));
+    public ResponseEntity<?> register(@RequestBody RegisterUserDTO dto){
+        UsuarioEntity usuarioEntity = usuarioService.registrarUsuario(dto.username(), dto.password());
         return ResponseEntity.ok(usuarioEntity);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
-        Optional<UsuarioEntity> usuarioEntity = usuarioService.buscarPorUsername(request.get("username"));
-        if(usuarioEntity.isPresent() && bCryptPasswordEncoder.matches(request.get("password"), usuarioEntity.get().getPassword())) {
+    public ResponseEntity<?> login(@RequestBody LoginUserDTO dto) {
+        Optional<UsuarioEntity> usuarioEntity = usuarioService.buscarPorUsername(dto.username());
+        if(usuarioEntity.isPresent() && bCryptPasswordEncoder.matches(dto.password(), usuarioEntity.get().getPassword())) {
             String token = JwtUtil.generateToken(usuarioEntity.get().getUsername());
             return ResponseEntity.ok(Map.of("token", token));
         }

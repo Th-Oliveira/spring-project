@@ -1,6 +1,5 @@
-package com.th_oliveira.spring_boot_project.entity;
+package com.th_oliveira.spring_boot_project.entity.produto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,7 +7,6 @@ import jakarta.persistence.*;
 public class ProdutoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(hidden = true)
     @Column(name = "id")
     private Long id;
 

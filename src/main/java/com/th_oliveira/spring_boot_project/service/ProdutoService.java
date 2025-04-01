@@ -1,6 +1,7 @@
 package com.th_oliveira.spring_boot_project.service;
 
-import com.th_oliveira.spring_boot_project.entity.ProdutoEntity;
+import com.th_oliveira.spring_boot_project.entity.produto.ProdutoEntity;
+import com.th_oliveira.spring_boot_project.entity.produto.dto.request.CreateProdutoDTO;
 import com.th_oliveira.spring_boot_project.exceptions.RecursoNaoEncontradoException;
 import com.th_oliveira.spring_boot_project.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,9 @@ public class ProdutoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto com ID " + id + " não encontrado!"));
     }
 
-    public ProdutoEntity salvarProduto(ProdutoEntity produtoEntity){
-        return produtoRepository.save(produtoEntity);
+    public ProdutoEntity salvarProduto (CreateProdutoDTO dto){
+
+        return produtoRepository.save(new ProdutoEntity(dto.nome(), dto.preco()));
     }
 
     public void deletarProduto(Long id){
